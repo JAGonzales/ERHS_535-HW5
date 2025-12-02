@@ -29,12 +29,12 @@ homicides <- read_csv("data/homicide-data.csv")
 baltimore_monthly <- homicides %>%
   filter(city == "Baltimore") %>%
   mutate(
-    # convert reported_date (YYYYMMDD) to Date
+    # to convert reported_date (YYYYMMDD) to Date
     date = ymd(reported_date),
     month = floor_date(date, "month"),
     m_num = month(month),
 
-    # Winter: Nov–Apr, Summer: May–Oct
+    # to identify season Winter: Nov–Apr, Summer: May–Oct
     season = if_else(m_num %in% c(11, 12, 1, 2, 3, 4),
                      "Winter", "Summer")
   ) %>%
@@ -47,6 +47,7 @@ baltimore_monthly <- homicides %>%
 
 # to set date of Freddie Gray's arrest
 freddie_date <- as.Date("2015-04-12")
+
 
 ```
 

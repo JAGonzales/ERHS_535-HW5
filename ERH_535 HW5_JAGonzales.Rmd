@@ -68,16 +68,17 @@ baltimore_monthly %>%
   geom_vline(xintercept = freddie_date,
              color = "red",
              linetype = "dashed",
-             size = 1) +
+             linewidth = 1) +
   
   # to add annotation text
-  geom_text(
-    aes(x = freddie_date, y = 40),
+  annotate(
+    "text",
+    x = freddie_date,
+    y = 40,
     label = "Arrest of\nFreddie Gray",
     color = "white",
     hjust = 1.1,
-    vjust = 0.75,
-    inherit.aes = FALSE
+    vjust = 0.75
   ) +
   
   # to add smooth trend line over time
@@ -85,7 +86,7 @@ baltimore_monthly %>%
     aes(y = monthly_homicides),
     method = "loess",
     color = "blue",
-    size = 1.2,
+    linewidth = 1.2,
     se = FALSE,
     span = 0.1
   ) +

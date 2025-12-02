@@ -2,7 +2,7 @@
 
 # Homework 5 – Washington Post Homicides
 
-This repository contains my work for Homework 5 from *ERHS 535 R Programming for Research*.  
+This repository contains my work for Homework 5 from *ERHS 535 (R Programming for Research)*.  
 The homework uses the Washington Post data set on homicides in major U.S. cities and applies all the knowledge learned in the class.
 
 ## Overview

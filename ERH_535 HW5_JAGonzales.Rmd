@@ -73,7 +73,7 @@ baltimore_monthly %>%
     inherit.aes = FALSE
   ) +
   
-  
+  # to add smooth trend line over time
   geom_smooth(
     aes(y = monthly_homicides),
     method = "loess",

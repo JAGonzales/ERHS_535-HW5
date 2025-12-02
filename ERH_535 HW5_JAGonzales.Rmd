@@ -48,7 +48,54 @@ baltimore_monthly <- homicides %>%
 # to set date of Freddie Gray's arrest
 freddie_date <- as.Date("2015-04-12")
 
+# to plot
+baltimore_monthly %>% 
+  ggplot(aes(x = month)) + 
+  
+  geom_col(aes(y = monthly_homicides, fill = season),
+           color = "black") +
+  
+  scale_fill_manual(values = c("Winter" = "grey", "Summer" = "skyblue")) +
+  
+  
+  geom_vline(xintercept = freddie_date,
+             color = "red",
+             linetype = "dashed",
+             size = 1) +
+  
+  
+  geom_text(
+    aes(x = freddie_date, y = 40),
+    label = "Arrest of\nFreddie Gray",
+    color = "white",
+    hjust = 1.1,
+    vjust = 0.75,
+    inherit.aes = FALSE
+  ) +
+  
+  
+  geom_smooth(
+    aes(y = monthly_homicides),
+    method = "loess",
+    color = "blue",
+    size = 1.2,
+    se = FALSE,
+    span = 0.2
+  ) +
+  
+  theme_dark() +
+  theme(legend.position = "bottom") +
+  scale_y_continuous(
+    name = "Monthly homicides",
+    breaks = c(0, 10, 20, 30, 40)
+  ) +
+  labs(
+    title = "Homicides in Baltimore, MD",
+    x = "Date",
+    fill = ""
+  )
 
+```
 ```
 
 

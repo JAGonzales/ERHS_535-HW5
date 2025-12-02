@@ -57,7 +57,7 @@ baltimore_monthly %>%
   
   scale_fill_manual(values = c("Winter" = "grey", "Summer" = "skyblue")) +
   
-  
+  # to create vertical line for Freddie Gray's arrest
   geom_vline(xintercept = freddie_date,
              color = "red",
              linetype = "dashed",

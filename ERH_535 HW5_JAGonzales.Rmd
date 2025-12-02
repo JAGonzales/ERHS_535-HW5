@@ -32,6 +32,12 @@ homicides <- homicides %>%
 balt_homicides <- homicides %>% 
   filter(city_name == "Baltimore, MD")
 
+# to convert reported_date to Date and extract year and month
+balt_homicides <- balt_homicides %>% 
+  mutate(date = ymd(reported_date)) %>% 
+  mutate_at(vars(date), funs(year, month))
+
+
 ```
 
 

@@ -21,6 +21,9 @@ library(tidyverse)
 library(lubridate)
 library(scales)
 
+# to load and read data
+homicides <- read_csv("data/homicide-data.csv")
+
 ```
 
 

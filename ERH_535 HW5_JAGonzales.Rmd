@@ -48,6 +48,12 @@ baltimore_monthly <- homicides %>%
 # to set date of Freddie Gray's arrest
 freddie_date <- as.Date("2015-04-12")
 
+
+
+```
+
+```{r, fig.width=12, fig.height=3}
+
 # to plot
 baltimore_monthly %>% 
   ggplot(aes(x = month)) + 
@@ -94,10 +100,6 @@ baltimore_monthly %>%
     x = "Date",
     fill = ""
   )
-
-```
-
-```{r, fig.width=12, fig.height=3}
 
 ```
 

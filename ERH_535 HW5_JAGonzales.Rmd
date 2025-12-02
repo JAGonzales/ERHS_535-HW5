@@ -24,6 +24,10 @@ library(scales)
 # to load and read data
 homicides <- read_csv("data/homicide-data.csv")
 
+#to combine city and state city into a single 'city_name' column
+homicides <- homicides %>% 
+  unite(col= city_name, city, state, sep=", ") 
+
 ```
 
 

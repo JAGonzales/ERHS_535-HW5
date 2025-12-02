@@ -1,0 +1,24 @@
+---
+title: "ERHS 535: HOMEWORK 5"
+author: "Jeffrey A. Gonzales"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(error = FALSE)
+
+```
+
+
+
+
+
+
+# ***APPENDIX***
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+```

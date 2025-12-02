@@ -63,7 +63,7 @@ baltimore_monthly %>%
              linetype = "dashed",
              size = 1) +
   
-  
+  # to add annotation text
   geom_text(
     aes(x = freddie_date, y = 40),
     label = "Arrest of\nFreddie Gray",

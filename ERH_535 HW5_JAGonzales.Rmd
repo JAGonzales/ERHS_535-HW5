@@ -86,7 +86,7 @@ baltimore_monthly %>%
     color = "blue",
     size = 1.2,
     se = FALSE,
-    span = 0.15
+    span = 0.1
   ) +
   
   theme_dark() +

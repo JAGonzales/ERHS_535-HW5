@@ -1,0 +1,113 @@
+---
+title: "ERHS 535: HOMEWORK 5"
+author: "Jeffrey A. Gonzales"
+output: 
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(error = FALSE)
+
+```
+
+
+```{r}
+# to load required packages
+library(readr)
+library(tidyverse)
+library(lubridate)
+library(scales)
+
+
+# to read in the Washington Post homicide data
+homicides <- read_csv("data/homicide-data.csv")
+
+# to keep only Baltimore and create monthly counts
+baltimore_monthly <- homicides %>%
+  filter(city == "Baltimore") %>%
+  mutate(
+    # to convert reported_date (YYYYMMDD) to Date
+    date = ymd(reported_date),
+    month = floor_date(date, "month"),
+    m_num = month(month),
+
+    # to identify season Winter: Nov–Apr, Summer: May–Oct
+    season = if_else(m_num %in% c(11, 12, 1, 2, 3, 4),
+                     "Winter", "Summer")
+  ) %>%
+  group_by(month, season) %>%
+  summarize(
+    monthly_homicides = n(),
+    .groups = "drop"
+  ) %>%
+  arrange(month)
+
+# to set date of Freddie Gray's arrest
+freddie_date <- as.Date("2015-04-12")
+
+
+
+```
+
+```{r, fig.width=15, fig.height=5}
+
+# to plot
+baltimore_monthly %>% 
+  ggplot(aes(x = month)) + 
+  
+  geom_col(aes(y = monthly_homicides, fill = season),
+           color = "black") +
+  
+  scale_fill_manual(values = c("Winter" = "grey", "Summer" = "skyblue")) +
+  
+  # to create vertical line for Freddie Gray's arrest
+  geom_vline(xintercept = freddie_date,
+             color = "red",
+             linetype = "dashed",
+             linewidth = 1) +
+  
+  # to add annotation text
+  annotate(
+    "text",
+    x = freddie_date,
+    y = 40,
+    label = "Arrest of\nFreddie Gray",
+    color = "white",
+    hjust = 1.1,
+    vjust = 0.75
+  ) +
+  
+  # to add smooth trend line over time
+  geom_smooth(
+    aes(y = monthly_homicides),
+    method = "loess",
+    color = "blue",
+    linewidth = 1.2,
+    se = FALSE,
+    span = 0.1
+  ) +
+  
+  theme_dark() +
+  theme(legend.position = "bottom") +
+  scale_y_continuous(
+    name = "Monthly homicides",
+    breaks = c(0, 10, 20, 30, 40)
+  ) +
+  labs(
+    title = "Homicides in Baltimore, MD",
+    x = "Date",
+    fill = ""
+  )
+
+```
+
+
+
+# ***APPENDIX***
+
+```{r show-code, ref.label = all_labels(), echo = TRUE, eval = FALSE}
+```

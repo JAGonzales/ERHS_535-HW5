@@ -56,7 +56,7 @@ freddie_date <- as.Date("2015-04-12")
 ```{r, fig.width=15, fig.height=5}
 
 # to plot
-baltimore_monthly %>% 
+baltimore_plot <- baltimore_monthly %>% 
   ggplot(aes(x = month)) + 
   
   geom_col(aes(y = monthly_homicides, fill = season),
@@ -102,6 +102,16 @@ baltimore_monthly %>%
     x = "Date",
     fill = ""
   )
+
+# to save the figure
+ggsave(
+  filename = "baltimore_homicides.png",
+  plot = baltimore_plot,
+  width = 8,      # in inches
+  height = 4.5,   # in inches
+  dpi = 600       # quality
+)
+
 
 ```
 

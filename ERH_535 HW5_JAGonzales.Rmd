@@ -45,6 +45,9 @@ baltimore_monthly <- homicides %>%
   ) %>%
   arrange(month)
 
+# to set date of Freddie Gray's arrest
+freddie_date <- as.Date("2015-04-12")
+
 ```
 
 
